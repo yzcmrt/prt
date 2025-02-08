@@ -1,33 +1,60 @@
-<div align="center">
-    <a href="https://chronark.com"><h1 align="center">chronark.com</h1></a>
+# Nextfolio
 
-My personal website, built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Upstash](https://upstash.com?ref=chronark.com), [Contentlayer](https://www.contentlayer.dev/) and deployed to [Vercel](https://vercel.com/).
+A clean, fast, and lightweight portfolio template built with [Next.js](https://nextjs.org/), [Vercel](https://vercel.com/), and [Tailwind CSS](https://tailwindcss.com/).
 
-</div>
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F1msirius%2FNextfolio)
 
-<br/>
+## Technologies Used
 
+- Framework: [Next.js](https://nextjs.org/)
+- Typography: [Vercel Geist Font](https://vercel.com/font)
+- Styling: [Tailwind CSS](https://tailwindcss.com/)
+- Analytics: [Vercel Web Analytics](https://vercel.com/docs/speed-insights) and [Speed Insights](https://vercel.com/docs/speed-insights)
+- Deployment: [Vercel](https://vercel.com/)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/upstash/clone?demo-title=Next.js%20Portfolio%20with%20Pageview%20Counter&demo-description=Portfolio%20site%20with%20pageview%20counter%2C%20built%20with%20Next.js%2013%20App%20Router%2C%20Contentlayer%2C%20and%20Upstash%20Redis.&demo-url=https%3A%2F%2Fchronark.com%2F&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1DA8n5a6WaP9p1FXf9LmUY%2Fc6264fa2732355787bf657df92dda8a1%2FCleanShot_2023-04-17_at_14.17.37.png&project-name=Next.js%20Portfolio%20with%20Pageview%20Counter&repository-name=nextjs-portfolio-pageview-counter&repository-url=https%3A%2F%2Fgithub.com%2Fchronark%2Fchronark.com&from=templates&integration-ids=oac_V3R1GIpkoJorr6fqyiwdhl17)
+## Features
 
-## Running Locally
+- **[MDX](https://mdxjs.com/) Support**: Use Markdown with JSX components for blog posts.
+- **Light and Dark Mode Toggle**: Switch between themes for better readability.
+- **Dynamic [OG Images](https://vercel.com/docs/functions/og-image-generation)**: Auto-generate Open Graph images for sharing.
+- **SEO Optimization**: Enhance search visibility with sitemap, robots.txt, and JSON-LD schema.
+- **Dynamic Feed Generation**: Automatic dynamic [RSS](https://nextfolio-template.vercel.app/rss.xml), [Atom](https://nextfolio-template.vercel.app/atom.xml), and [JSON](https://nextfolio-template.vercel.app/feed.json) feeds.
+- **[KaTeX](https://katex.org/) Integration**: Render mathematical expressions smoothly.
+- **Performance Tracking**: Monitor web performance with [Vercel Web Analytics](https://vercel.com/docs/speed-insights) and [Speed Insights](https://vercel.com/docs/speed-insights).
+- **Interactive Embeds**: Easily embed interactive tweets and YouTube videos.
+- **Captions**: Add descriptive captions to photos, tweets, and videos.
+- **Image Grid**: Easily showcase image galleries or photos.
 
+## Installation
 
-```sh-session
-git clone https://github.com/chronark/chronark.com.git
-cd chronark.com
+Nextfolio uses [pnpm](https://pnpm.io/installation) for dependency management, so ensure it is installed on your system.
+
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
+
+```
+pnpm create next-app --example https://github.com/1msirius/Nextfolio my-portfolio
 ```
 
+Start the development server:
 
-Create a `.env` file similar to [`.env.example`](https://github.com/chronark/chronark.com/blob/main/.env.example).
-
-Then install dependencies and run the development server:
-```sh-session
-pnpm install
+```
 pnpm dev
 ```
 
+The server will be running at [http://localhost:3000](http://localhost:3000).
 
-## Cloning / Forking
+## Configuration
 
-Please remove all of my personal information (projects, images, etc.) before deploying your own version of this site.
+1. Update the site metadata and social links in `app/config.ts` to set up SEO, feeds, social links, and Open Graph settings.
+2. Update your routes in `app/sitemap.ts` for SEO optimization.
+3. Update your blog posts in the `/content` folder.
+
+For more information about configuration, follow the instructions in the [Getting Started](https://nextfolio-template.vercel.app/blog/getting-started#configuration) post.
+
+## Contributing
+
+Contributions are welcome! To get involved, just push your code to the repo. Whether you're enhancing existing features or adding new ones, your efforts are greatly appreciated!
+
+## Licence
+
+Nextfolio is open-source and released under the MIT License.
