@@ -1,14 +1,19 @@
+"use client";
 import Link from "next/link";
 import { ThemeSwitch } from "./theme-switch";
+import { LanguageSwitch } from "./language-switch";
+import { useLanguage } from "../i18n/context";
 import { metaData } from "../config";
 
-const navItems = {
-  "/blog": { name: "Blog" },
-  "/projects": { name: "Projects" },
-  "/photos": { name: "Photos" },
-};
-
 export function Navbar() {
+  const { translations } = useLanguage();
+
+  const navItems = {
+    "/": { name: translations.nav.home },
+    "/projects": { name: translations.nav.projects },
+    "/contact": { name: translations.nav.contact },
+  };
+
   return (
     <nav className="lg:mb-16 mb-12 py-5">
       <div className="flex flex-col md:flex-row md:items-center justify-between">
@@ -22,12 +27,13 @@ export function Navbar() {
             <Link
               key={path}
               href={path}
-              className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative"
+              className="transition-all hover:opacity-80"
             >
               {name}
             </Link>
           ))}
           <ThemeSwitch />
+          <LanguageSwitch />
         </div>
       </div>
     </nav>

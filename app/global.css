@@ -18,20 +18,153 @@
   --sh-jsxliterals: #6266d1;
   --sh-property: #e25a1c;
   --sh-entity: #e25a1c;
+  --neon-pink: #ff69b4;
+  --neon-blue: #00ffff;
 }
 
 /* Dark theme colors */
 .dark {
-  background-color: #121212;
-  --sh-class: #4c97f8;
-  --sh-identifier: white;
-  --sh-sign: #8996a3;
-  --sh-string: #0fa295;
-  --sh-keyword: #f47067;
-  --sh-comment: #a19595;
-  --sh-jsxliterals: #6266d1;
-  --sh-property: #e25a1c;
-  --sh-entity: #e25a1c;
+  --bg-primary: #0D0208;          /* En koyu arka plan */
+  --text-primary: #00FF41;        /* En parlak yeşil - başlıklar için */
+  --text-secondary: #008F11;      /* Orta parlak yeşil - alt başlıklar için */
+  --text-tertiary: #003B00;       /* Koyu yeşil - normal metin için */
+  --hover-color: #00FF41;         /* Hover efekti için parlak yeşil */
+  
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.dark h1, .dark h2, .dark h3 {
+  color: var(--text-primary);
+  text-shadow: 0 0 5px var(--text-primary);
+}
+
+.dark p, .dark span {
+  color: var(--text-secondary);
+}
+
+.dark a {
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.dark a:hover {
+  color: var(--hover-color);
+  text-shadow: 0 0 8px var(--hover-color);
+}
+
+/* Light tema için yeni renk paleti */
+.light {
+  --bg-primary: #F8F5F5;         /* Kırık beyaz arka plan */
+  --text-primary: #FF0080;       /* Canlı neon pembe - başlıklar için */
+  --text-secondary: #FF69B4;     /* Orta ton pembe - alt başlıklar için */
+  --text-tertiary: #FFB6C1;     /* Açık pembe - normal metin için */
+  --hover-color: #FF1493;       /* Hover için koyu pembe */
+  
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.light h1, .light h2, .light h3 {
+  color: var(--text-primary);
+  text-shadow: 0 0 5px var(--text-primary);
+}
+
+.light p, .light span {
+  color: var(--text-secondary);
+}
+
+.light a {
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.light a:hover {
+  color: var(--hover-color);
+  text-shadow: 0 0 8px var(--hover-color);
+}
+
+/* Neon efekti için genel sınıflar */
+.neon-text {
+  text-shadow: 0 0 5px currentColor;
+}
+
+.neon-box {
+  box-shadow: 0 0 10px currentColor;
+}
+
+/* Form elementleri için genel stiller */
+.contact-form input,
+.contact-form textarea {
+  @apply w-full p-3 rounded-lg border-2 transition-all duration-300;
+}
+
+/* Dark tema form stilleri */
+.dark .contact-form input,
+.dark .contact-form textarea {
+  background-color: #0D0208;
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+.dark .contact-form input:focus,
+.dark .contact-form textarea:focus {
+  border-color: var(--text-primary);
+  box-shadow: 0 0 5px var(--text-primary);
+}
+
+.dark .contact-form button {
+  @apply w-full p-3 rounded-lg;
+  background-color: #4A4A4A;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.dark .contact-form button:hover {
+  background-color: var(--text-secondary);
+  text-shadow: 0 0 8px var(--text-primary);
+}
+
+/* Light tema form stilleri */
+.light .contact-form input,
+.light .contact-form textarea {
+  background-color: #FFFFFF;
+  border-color: #E5E5E5;
+  color: #333333;
+}
+
+.light .contact-form input:focus,
+.light .contact-form textarea:focus {
+  border-color: var(--text-primary);
+  box-shadow: 0 0 5px var(--text-primary);
+}
+
+.light .contact-form button {
+  @apply w-full p-3 rounded-lg;
+  background-color: #4A4A4A;
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+}
+
+.light .contact-form button:hover {
+  background-color: var(--text-secondary);
+}
+
+/* Form başarı/hata durumları */
+.light .contact-form.success button {
+  background-color: #4CAF50;
+}
+
+.light .contact-form.error button {
+  background-color: var(--text-primary);
+}
+
+.dark .contact-form.success button {
+  background-color: var(--text-primary);
+}
+
+.dark .contact-form.error button {
+  background-color: #FF0000;
 }
 
 html {
@@ -149,3 +282,69 @@ table {
 .title {
   text-wrap: balance;
 }
+
+/* Animasyonlar */
+@keyframes title-slide {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animasyon sınıfları */
+.animate-title {
+  animation: title-slide 1s ease forwards;
+}
+
+.animate-gradient {
+  background: linear-gradient(
+    270deg,
+    var(--text-primary),
+    var(--text-secondary),
+    var(--text-primary)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient 3s ease infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease forwards;
+}
+
+/* Responsive ayarlar */
+@media (max-width: 768px) {
+  .animate-title {
+    font-size: 2rem;
+  }
+}
+
