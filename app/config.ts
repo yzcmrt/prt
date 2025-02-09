@@ -1,11 +1,12 @@
 export const metaData = {
-  baseUrl: "https://mertyazici.dev/",
-  title: "Mert's Portfolio",
+  baseUrl: "https://mertyazici.dev",
+  title: "Portfolio",
   name: "Mert",
-  description: "I create user-friendly digital experiences with web technologies and modern design approaches.",
+  description: "Frontend Developer & UI/UX Designer",
+  
 };
 
 export const socialLinks = {
   github: "https://github.com/yzcmrt",
-  linkedin: "https://linkedin.com/in/mert-yazici"
+  linkedin: "https://linkedin.com/in/mert-yazici",
 };
