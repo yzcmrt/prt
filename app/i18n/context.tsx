@@ -20,7 +20,7 @@ const translations = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocale] = useState<Locale>('tr');
+  const [locale, setLocale] = useState<Locale>('en');
 
   const changeLocale = (newLocale: Locale) => {
     setLocale(newLocale);

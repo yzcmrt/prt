@@ -1,21 +1,30 @@
 export interface Project {
   title: string;
   year: number;
-  description: string;
+  description: {
+    en: string;
+    tr: string;
+  };
   url: string;
 }
 
 export const projects: Project[] = [
   {
-    title: "Mithril AI",
+    title: "Bull Scan",
     year: 2024,
-    description: "Open science AI resarch lab",
-    url: "https://github.com/mithrilai",
+    description: {
+      en: "Tracking system for coins in the sui network",
+      tr: "Sui ağındaki coinler için takip sistemi"
+    },
+    url: "https://bs-product.vercel.app/",
   },
   {
-    title: "OpenDeepLearning",
-    year: 2023,
-    description: "Open source AI education resources",
-    url: "https://opendeeplearning.xyz/",
+    title: "Telegram Mini App",
+    year: 2024,
+    description: {
+      en: "Telegram mini app frontend",
+      tr: "Telegram mini uygulama arayüzü"
+    },
+    url: "https://lunark.vercel.app/",
   },
 ];

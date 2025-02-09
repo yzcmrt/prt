@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { socialLinks } from "./config";
 import { useLanguage } from './i18n/context';
+import { CVDownload } from './components/cv-download';
 
 export default function Page() {
   const { translations } = useLanguage();
@@ -10,7 +11,7 @@ export default function Page() {
     <section className="min-h-[60vh] flex flex-col justify-center items-center">
       <div className="text-center space-y-8">
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight animate-title">
-          {translations.home.title} <span className="animate-gradient">İsminiz</span>
+          {translations.home.title} <span className="animate-gradient">Mert</span>
         </h1>
         
         <p className="text-lg md:text-xl animate-fade-in opacity-0">
@@ -22,6 +23,8 @@ export default function Page() {
             {translations.home.description}
           </p>
         </div>
+
+        <CVDownload />
       </div>
     </section>
   );

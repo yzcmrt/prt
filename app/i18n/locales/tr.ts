@@ -5,9 +5,10 @@ export const tr = {
     contact: "İletişim"
   },
   home: {
-    title: "Merhaba, Ben Mert",
+    title: "Merhaba, Ben",
     subtitle: "Frontend Geliştirici & UI/UX Tasarımcı",
-    description: "Web teknolojileri ve modern tasarım yaklaşımlarıyla kullanıcı dostu dijital deneyimler oluşturuyorum."
+    description: "Web teknolojileri ve modern tasarım yaklaşımlarıyla kullanıcı dostu dijital deneyimler oluşturuyorum.",
+    downloadCV: "CV İndir (TR)"
   },
   contact: {
     title: "İletişim Formu",
@@ -21,5 +22,13 @@ export const tr = {
   projects: {
     title: "Projeler",
     viewProject: "Projeyi Görüntüle"
+  },
+  matrix: {
+    hack: "HACKLENDİN!",
+    joke: "şaka şaka :D"
+  },
+  notFound: {
+    title: "404 - Sayfa bulunamadı",
+    message: "Ups! Aradığınız sayfa mevcut değil."
   }
 }; 

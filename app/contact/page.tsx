@@ -1,7 +1,9 @@
 "use client";
 import React, { useState, useRef } from "react";
+import { useLanguage } from '../i18n/context';
 
 export default function ContactForm() {
+  const { translations } = useLanguage();
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -28,7 +30,7 @@ export default function ContactForm() {
     } catch (error) {
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 3000);
-      console.error("Form gönderimi başarısız:", error);
+      console.error("Form submission failed:", error);
     }
   };
 
@@ -40,7 +42,7 @@ export default function ContactForm() {
 
   return (
     <section className="max-w-xl mx-auto py-8 relative">
-      <h1 className="mb-8 text-2xl font-medium tracking-tight">İletişim Formu</h1>
+      <h1 className="mb-8 text-2xl font-medium tracking-tight">{translations.contact.title}</h1>
       
       <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
         <input 
@@ -51,7 +53,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="name" className="block text-sm font-medium mb-2">
-            İsim
+            {translations.contact.name}
           </label>
           <input
             type="text"
@@ -64,7 +66,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="email" className="block text-sm font-medium mb-2">
-            E-posta
+            {translations.contact.email}
           </label>
           <input
             type="email"
@@ -77,7 +79,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="message" className="block text-sm font-medium mb-2">
-            Mesajınız
+            {translations.contact.message}
           </label>
           <textarea
             id="message"
@@ -92,7 +94,7 @@ export default function ContactForm() {
           type="submit"
           className={`w-full ${buttonStyles[submitStatus]} text-white py-2 px-4 rounded-md transition-colors duration-300`}
         >
-          Gönder
+          {translations.contact.send}
         </button>
       </form>
     </section>

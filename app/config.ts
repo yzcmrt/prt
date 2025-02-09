@@ -1,12 +1,11 @@
 export const metaData = {
-  baseUrl: "https://your-site.com/",
-  title: "Your Name",
-  name: "Your Name",
-  description: "Your portfolio description",
+  baseUrl: "https://mertyazici.dev/",
+  title: "Mert's Portfolio",
+  name: "Mert",
+  description: "I create user-friendly digital experiences with web technologies and modern design approaches.",
 };
 
 export const socialLinks = {
-  github: "https://github.com/yourusername",
-  linkedin: "https://linkedin.com/in/yourusername",
-  email: "mailto:your@email.com",
+  github: "https://github.com/yzcmrt",
+  linkedin: "https://linkedin.com/in/mert-yazici"
 };

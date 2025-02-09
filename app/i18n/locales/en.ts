@@ -5,9 +5,10 @@ export const en = {
     contact: "Contact"
   },
   home: {
-    title: "Hello, I'm Mert",
+    title: "Hello, I'm",
     subtitle: "Frontend Developer & UI/UX Designer",
-    description: "I create user-friendly digital experiences with web technologies and modern design approaches."
+    description: "I create user-friendly digital experiences with web technologies and modern design approaches.",
+    downloadCV: "Download CV (EN)"
   },
   contact: {
     title: "Contact Form",
@@ -21,5 +22,13 @@ export const en = {
   projects: {
     title: "Projects",
     viewProject: "View Project"
+  },
+  matrix: {
+    hack: "YOU GOT HACKED!",
+    joke: "it's a joke :D"
+  },
+  notFound: {
+    title: "404 - Page not found",
+    message: "Oops! The page you're looking for doesn't seem to exist."
   }
 }; 

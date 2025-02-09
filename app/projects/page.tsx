@@ -1,16 +1,14 @@
+"use client";
 import Link from "next/link";
-import type { Metadata } from "next";
 import { projects } from "./project-data";
-
-export const metadata: Metadata = {
-  title: "Projects",
-  description: "Nextfolio Projects",
-};
+import { useLanguage } from '../i18n/context';
 
 export default function Projects() {
+  const { translations, locale } = useLanguage();
+
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-medium tracking-tight">Projects</h1>
+      <h1 className="mb-8 text-2xl font-medium tracking-tight">{translations.projects.title}</h1>
       <div>
         {projects.map((project, index) => (
           <Link
@@ -23,7 +21,7 @@ export default function Projects() {
             <div className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-1 sm:space-y-0 sm:space-x-2">
               <h2 className="text-black dark:text-white">{project.title}</h2>
               <p className="text-neutral-600 dark:text-neutral-400 tracking-tight">
-                {project.description}
+                {project.description[locale]}
               </p>
             </div>
           </Link>
