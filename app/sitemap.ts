@@ -1,21 +1,24 @@
-import { MetadataRoute } from "next";
-import { getBlogPosts } from "./lib/posts";
-import { metaData } from "./config";
+import { MetadataRoute } from 'next'
 
-const BaseUrl = metaData.baseUrl.endsWith("/")
-  ? metaData.baseUrl
-  : `${metaData.baseUrl}/`;
-
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  let blogs = getBlogPosts().map((post) => ({
-    url: `${BaseUrl}blog/${post.slug}`,
-    lastModified: post.metadata.publishedAt,
-  }));
-
-  let routes = ["", "blog", "projects", "photos"].map((route) => ({
-    url: `${BaseUrl}${route}`,
-    lastModified: new Date().toISOString().split("T")[0],
-  }));
-
-  return [...routes, ...blogs];
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: 'https://mertyazici.dev',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 1,
+    },
+    {
+      url: 'https://mertyazici.dev/projects',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://mertyazici.dev/contact',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.5,
+    },
+  ]
 }

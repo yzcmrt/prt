@@ -1,12 +1,11 @@
-import { metaData } from "./config";
+import { MetadataRoute } from 'next'
 
-export default function robots() {
+export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [
-      {
-        userAgent: "*",
-      },
-    ],
-    sitemap: `${metaData.baseUrl}/sitemap.xml`,
-  };
+    rules: {
+      userAgent: '*',
+      allow: '/',
+    },
+    sitemap: 'https://mertyazici.dev/sitemap.xml',
+  }
 }
