@@ -94,9 +94,22 @@ html.light, html.dark {
   transition: all 0.3s ease;
 }
 
-.light a:hover {
+/* Dropdown bağlantılarını hariç tut */
+.light a:not(.dropdown-menu a):hover {
   color: var(--hover-color);
   text-decoration: underline;
+}
+
+/* Dropdown bağlantıları için özel stil */
+.light .dropdown-menu a:hover {
+  color: white !important;
+  text-decoration: none;
+}
+
+/* CV Download butonu için özel stil */
+.light .cv-download-container button:hover {
+  color: white !important;
+  background-color: black;
 }
 
 /* Neon efekti için genel sınıflar - sadece dark temada aktif */
@@ -430,7 +443,7 @@ table {
 
 /* Light theme dropdown styles */
 .light .dropdown-menu {
-  border-color: #FF0080;
+  border-color: black;
   background-color: rgba(255, 255, 255, 0.9);
 }
 
