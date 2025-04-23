@@ -10,12 +10,20 @@ const storageKey = 'theme-preference';
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   const [mounted, setMounted] = React.useState(false);
 
+  // Sayfa yüklendiğinde mevcut temayı hemen uygula, flash patlamasını önle
   React.useEffect(() => {
-    setMounted(true);
+    const savedTheme = localStorage.getItem(storageKey) || 'dark';
+    document.documentElement.classList.add(savedTheme);
+    
+    const timeout = setTimeout(() => {
+      setMounted(true);
+    }, 50);
+    
+    return () => clearTimeout(timeout);
   }, []);
 
   if (!mounted) {
-    return <>{children}</>;
+    return <div className="theme-init">{children}</div>;
   }
 
   return (
@@ -23,7 +31,6 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
       attribute="class"
       defaultTheme="dark"
       enableSystem={false}
-      disableTransitionOnChange
       {...props}
     >
       {children}
@@ -34,10 +41,27 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
 export const ThemeSwitch: React.FC = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
+  const [isChanging, setIsChanging] = React.useState(false);
 
   React.useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleThemeChange = () => {
+    setIsChanging(true);
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    
+    // Tema değişimini yerel depolamaya kaydet
+    localStorage.setItem(storageKey, newTheme);
+    
+    // Temayı değiştir ve animasyonlarla uyumlu hale getir
+    setTheme(newTheme);
+    
+    // Animasyonların sorunsuz çalışması için kısa bir gecikme ekle
+    setTimeout(() => {
+      setIsChanging(false);
+    }, 300);
+  };
 
   if (!mounted) {
     return null;
@@ -45,11 +69,12 @@ export const ThemeSwitch: React.FC = () => {
 
   return (
     <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="flex items-center justify-center transition-opacity duration-300 hover:opacity-90"
+      onClick={handleThemeChange}
+      className={`flex items-center justify-center transition-opacity duration-300 hover:opacity-90 ${isChanging ? 'pointer-events-none' : ''}`}
       aria-label="Toggle theme"
+      disabled={isChanging}
     >
-      <FaCircleHalfStroke className="h-[14px] w-[14px]" />
+      <FaCircleHalfStroke className={`h-[14px] w-[14px] ${isChanging ? 'animate-pulse' : ''}`} />
     </button>
   );
 };

@@ -9,7 +9,7 @@ import Footer from "./components/footer";
 import { ThemeProvider } from "./components/theme-switch";
 import { metaData } from "./config";
 import { LanguageProvider } from './i18n/context';
-import { MatrixIntro } from "./components/matrix-intro";
+import { MatrixBackground } from "./components/matrix-intro";
 
 export const metadata: Metadata = {
   metadataBase: new URL(metaData.baseUrl),
@@ -29,10 +29,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={cx(GeistSans.variable, GeistMono.variable)}>
-      <body className="antialiased flex flex-col items-center justify-center mx-auto mt-2 lg:mt-8 mb-20 lg:mb-40">
-        <MatrixIntro />
+      <body className="antialiased flex flex-col items-center justify-center mx-auto mt-2 lg:mt-8 mb-20 pb-16">
         <LanguageProvider>
           <ThemeProvider>
+            <MatrixBackground />
             <main className="flex-auto min-w-0 mt-2 md:mt-6 flex flex-col px-6 sm:px-4 md:px-0 max-w-[640px] w-full">
               <Navbar />
               {children}

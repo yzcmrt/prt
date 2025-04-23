@@ -7,6 +7,22 @@
   color: #fefefe;
 }
 
+/* Sayfa yüklenirken flash patlamasını önlemek için */
+.theme-init {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Tema geçiş stilleri */
+html.light, html.dark {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.matrix-theme-transition {
+  transition: all 1s ease;
+}
+
 /* Light theme colors */
 :root {
   --sh-class: #2d5e9d;
@@ -24,8 +40,8 @@
 
 /* Dark theme colors */
 .dark {
-  --bg-primary: #0D0208;          /* En koyu arka plan */
-  --text-primary: #00FF41;        /* En parlak yeşil - başlıklar için */
+  --bg-primary: #0D0208;          /* Koyu siyah arka plan */
+  --text-primary: #00FF41;        /* Parlak yeşil - başlıklar için */
   --text-secondary: #008F11;      /* Orta parlak yeşil - alt başlıklar için */
   --text-tertiary: #003B00;       /* Koyu yeşil - normal metin için */
   --hover-color: #00FF41;         /* Hover efekti için parlak yeşil */
@@ -55,11 +71,11 @@
 
 /* Light tema için yeni renk paleti */
 .light {
-  --bg-primary: #F8F5F5;         /* Kırık beyaz arka plan */
-  --text-primary: #FF0080;       /* Canlı neon pembe - başlıklar için */
-  --text-secondary: #FF69B4;     /* Orta ton pembe - alt başlıklar için */
-  --text-tertiary: #FFB6C1;     /* Açık pembe - normal metin için */
-  --hover-color: #FF1493;       /* Hover için koyu pembe */
+  --bg-primary: #FFFFFF;         /* Beyaz arka plan */
+  --text-primary: #000000;       /* Siyah - başlıklar için */
+  --text-secondary: #333333;     /* Koyu gri - alt başlıklar için */
+  --text-tertiary: #666666;      /* Orta gri - normal metin için */
+  --hover-color: #000000;        /* Hover için siyah */
   
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -67,7 +83,6 @@
 
 .light h1, .light h2, .light h3 {
   color: var(--text-primary);
-  text-shadow: 0 0 5px var(--text-primary);
 }
 
 .light p, .light span {
@@ -81,11 +96,11 @@
 
 .light a:hover {
   color: var(--hover-color);
-  text-shadow: 0 0 8px var(--hover-color);
+  text-decoration: underline;
 }
 
-/* Neon efekti için genel sınıflar */
-.neon-text {
+/* Neon efekti için genel sınıflar - sadece dark temada aktif */
+.dark .neon-text {
   text-shadow: 
     0 0 5px #00FF41,
     0 0 10px #00FF41,
@@ -93,8 +108,8 @@
   animation: pulse 2s infinite;
 }
 
-.neon-box {
-  box-shadow: 0 0 10px currentColor;
+.dark .neon-box {
+  box-shadow: 0 0 10px var(--text-primary);
 }
 
 /* Form elementleri için genel stiller */
