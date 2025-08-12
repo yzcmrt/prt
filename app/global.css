@@ -94,21 +94,21 @@ html.light, html.dark {
   transition: all 0.3s ease;
 }
 
-/* Dropdown bağlantılarını hariç tut */
-.light a:not(.dropdown-menu a):hover {
+/* Genel link hover davranışı */
+.light a:hover {
   color: var(--hover-color);
   text-decoration: underline;
 }
 
-/* Dropdown bağlantıları için özel stil */
+/* Dropdown menü içindeki linkler için daha spesifik override */
 .light .dropdown-menu a:hover {
-  color: white !important;
+  color: white;
   text-decoration: none;
 }
 
 /* CV Download butonu için özel stil */
 .light .cv-download-container button:hover {
-  color: white !important;
+  color: white;
   background-color: black;
 }
 
@@ -380,17 +380,7 @@ table {
   }
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+/* duplicate pulse keyframes removed */
 
 /* CV Download button hover effect */
 .cv-download-btn {

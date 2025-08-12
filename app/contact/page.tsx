@@ -6,12 +6,19 @@ export default function ContactForm() {
   const { translations } = useLanguage();
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const formRef = useRef<HTMLFormElement>(null);
+  const web3FormsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     
     try {
+      if (!web3FormsKey) {
+        console.warn("Web3Forms public key missing: set NEXT_PUBLIC_WEB3FORMS_KEY in env.");
+        setSubmitStatus('error');
+        setTimeout(() => setSubmitStatus('idle'), 3000);
+        return;
+      }
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData
@@ -44,7 +51,7 @@ export default function ContactForm() {
     <section className="max-w-xl mx-auto py-8 relative">
       <h1 className="mb-8 text-2xl font-medium tracking-tight">{translations.contact.title}</h1>
       
-      <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+      <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 contact-form">
         <input 
           type="hidden" 
           name="access_key" 
@@ -93,6 +100,7 @@ export default function ContactForm() {
         <button
           type="submit"
           className={`w-full ${buttonStyles[submitStatus]} text-white py-2 px-4 rounded-md transition-colors duration-300`}
+          disabled={!web3FormsKey}
         >
           {translations.contact.send}
         </button>

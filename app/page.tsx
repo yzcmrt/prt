@@ -1,7 +1,5 @@
 "use client";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import { socialLinks } from "./config";
 import { useLanguage } from './i18n/context';
 import { CVDownload } from './components/cv-download';
 import { useTheme } from "next-themes";

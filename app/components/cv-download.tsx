@@ -2,11 +2,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { FaFileDownload, FaChevronDown } from "react-icons/fa";
 import { useTheme } from 'next-themes';
+import { useLanguage } from '../i18n/context';
 
 export const CVDownload = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
+  const { translations } = useLanguage();
   
   // Dropdown dışına tıklandığında menüyü kapat
   useEffect(() => {
@@ -24,7 +26,7 @@ export const CVDownload = () => {
   const darkButtonClass = "border-[#00FF41] text-[#00FF41] hover:bg-[#00FF41] hover:text-black";
   
   // Açık tema için sınıflar
-  const lightButtonClass = "border-black text-black hover:bg-black hover:text-white !important";
+  const lightButtonClass = "border-black text-black hover:bg-black hover:text-white";
 
   // Tema değişimi için dinamik sınıflar
   const buttonBaseClass = theme === 'dark' ? darkButtonClass : lightButtonClass;
@@ -43,10 +45,13 @@ export const CVDownload = () => {
           '--hover-bg': theme === 'dark' ? '#00FF41' : '#000000',
           '--hover-text': theme === 'dark' ? '#000000' : '#FFFFFF'
         } as React.CSSProperties}
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
+        aria-label={translations.home.downloadCV}
       >
         <span className="flex items-center">
           <FaFileDownload className="mr-2" />
-          Download CV
+          {translations.home.downloadCV}
         </span>
         <FaChevronDown className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
@@ -61,7 +66,7 @@ export const CVDownload = () => {
             } ${
               theme === 'dark' 
                 ? 'hover:bg-[#003B00] hover:text-white' 
-                : 'hover:bg-black hover:text-white !important'
+                : 'hover:bg-black hover:text-white'
             }`}
             onClick={() => setIsOpen(false)}
             style={{ 
@@ -79,7 +84,7 @@ export const CVDownload = () => {
             } ${
               theme === 'dark' 
                 ? 'hover:bg-[#003B00] hover:text-white' 
-                : 'hover:bg-black hover:text-white !important'
+                : 'hover:bg-black hover:text-white'
             }`}
             onClick={() => setIsOpen(false)}
             style={{ 

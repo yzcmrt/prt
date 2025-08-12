@@ -28,22 +28,12 @@ function SocialLinks() {
 
 export default function Footer() {
   return (
-    <footer className="w-full py-4 mt-auto border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#0D0208] fixed bottom-0 left-0 right-0 z-10">
+    <footer className="w-full py-2 mt-auto border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#0D0208] fixed bottom-0 left-0 right-0 z-10 text-sm">
       <div className="max-w-[640px] mx-auto px-6 sm:px-4 md:px-0">
-        <div className="flex justify-between items-center flex-wrap gap-y-2">
-          <div className="flex items-center gap-4 flex-wrap">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-3">
             <time className="text-[#1C1C1C] dark:text-[#D4D4D4]">© {YEAR}</time>
-            <span className="text-neutral-400 dark:text-neutral-600 text-sm">
-              Built with Next.js & Vercel · Powered by cursor.ai · Thanks to 
-              <a 
-                href="https://github.com/1msirius" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-neutral-400 dark:text-neutral-600 text-sm ml-1"
-              >
-                @1msirius
-              </a>
-            </span>
+            <span className="text-neutral-400 dark:text-neutral-600">Built with Next.js & Vercel</span>
           </div>
           <SocialLinks />
         </div>

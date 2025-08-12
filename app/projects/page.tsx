@@ -11,20 +11,24 @@ export default function Projects() {
       <h1 className="mb-8 text-2xl font-medium tracking-tight">{translations.projects.title}</h1>
       <div>
         {projects.map((project, index) => (
-          <Link
+          <div
             key={index}
-            href={project.url}
-            className="flex flex-col space-y-1 mb-5 transition-opacity duration-200 hover:opacity-80"
-            target="_blank"
-            rel="noopener noreferrer"
+            className="flex flex-col space-y-2 mb-5"
           >
-            <div className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-1 sm:space-y-0 sm:space-x-2">
+            <div className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center sm:space-x-2">
               <h2 className="text-black dark:text-white">{project.title}</h2>
-              <p className="text-neutral-600 dark:text-neutral-400 tracking-tight">
-                {project.description[locale]}
-              </p>
+              <p className="text-neutral-600 dark:text-neutral-400 tracking-tight">{project.description[locale]}</p>
             </div>
-          </Link>
+            <div className="flex gap-3 text-sm">
+              <a href={project.url} target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Live</a>
+              {project.github && (
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">GitHub</a>
+              )}
+              {project.telegram && (
+                <a href={project.telegram} target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Telegram</a>
+              )}
+            </div>
+          </div>
         ))}
       </div>
     </section>

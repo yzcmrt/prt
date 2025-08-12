@@ -13,27 +13,20 @@ export const MatrixBackground = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const chars = 'ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ1234567890¦｢｣､･ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
+    const fontSize = 15;
+    let drops: number[] = [];
+    let animationFrameId: number | null = null;
+
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      const columns = Math.floor(canvas.width / fontSize);
+      drops = Array.from({ length: columns }, () => 1);
     };
 
-    // İlk boyutlandırma
-    resizeCanvas();
-
-    // Pencere boyutu değiştiğinde canvas'ı yeniden boyutlandır
-    window.addEventListener('resize', resizeCanvas);
-
-    // Matrix'in orijinal Katakana karakterleri ve bazı semboller
-    const chars = 'ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ1234567890¦｢｣､･ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
-    const fontSize = 15;
-    const columns = canvas.width / fontSize;
-    const drops = Array.from({ length: columns }, () => 1);
-
     const draw = () => {
-      // Tema değişimine göre renkleri ayarla
       const bgColor = theme === 'dark' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)';
-      // Koyu temada daha belirgin yeşil, açık temada daha belirgin siyah renk
       const textColor = theme === 'dark' ? 'rgba(0, 255, 65, 0.5)' : 'rgba(0, 0, 0, 0.4)';
 
       ctx.fillStyle = bgColor;
@@ -51,12 +44,19 @@ export const MatrixBackground = () => {
         }
         drops[i]++;
       }
+
+      animationFrameId = window.requestAnimationFrame(draw);
     };
 
-    const interval = setInterval(draw, 33);
+    // İlk kurulum
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    animationFrameId = window.requestAnimationFrame(draw);
 
     return () => {
-      clearInterval(interval);
+      if (animationFrameId !== null) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
       window.removeEventListener('resize', resizeCanvas);
     };
   }, [theme]);

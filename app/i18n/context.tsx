@@ -24,7 +24,31 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const changeLocale = (newLocale: Locale) => {
     setLocale(newLocale);
+    try {
+      if (typeof document !== 'undefined') {
+        document.documentElement.lang = newLocale;
+      }
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('preferred-locale', newLocale);
+      }
+    } catch {}
   };
+
+  React.useEffect(() => {
+    try {
+      const saved = typeof localStorage !== 'undefined' ? (localStorage.getItem('preferred-locale') as Locale | null) : null;
+      if (saved === 'en' || saved === 'tr') {
+        setLocale(saved);
+        if (typeof document !== 'undefined') {
+          document.documentElement.lang = saved;
+        }
+      } else {
+        if (typeof document !== 'undefined') {
+          document.documentElement.lang = 'en';
+        }
+      }
+    } catch {}
+  }, []);
 
   return (
     <LanguageContext.Provider
